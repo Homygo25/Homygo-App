@@ -79,7 +79,7 @@ const PropertyCard = ({ property, isFavorite, toggleFavorite, openPropertyDetail
 
       <div className="p-4 sm:p-5 flex flex-col flex-grow">
         <div className="flex justify-between items-start mb-1.5 sm:mb-2">
-          <h3 className="text-base sm:text-lg font-semibold text-foreground line-clamp-2 leading-tight">
+          <h3 className="text-base sm:text-lg font-semibold text-foreground line-clamp-2 leading-tight flex-1 mr-2">
             {property.title}
           </h3>
           <div className="ml-2 flex-shrink-0">

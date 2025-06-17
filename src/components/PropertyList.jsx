@@ -154,24 +154,26 @@ const PropertyList = ({
 
         <AnimatePresence>
           {properties.length > 0 ? (
-            <motion.div
-              className={`grid grid-cols-1 ${isHomePage ? "md:grid-cols-2 lg:grid-cols-3" : "gap-y-6 sm:gap-y-8"} gap-4 sm:gap-6 md:gap-8`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, staggerChildren: 0.1 }}
-            >
-              {properties.map((property, index) => (
-                 <div key={property.id || `prop-${index}`} className={isHomePage ? "" : "w-full md:w-3/4 lg:w-2/3 mx-auto"}>
-                    <PropertyCard
-                    property={property}
-                    isFavorite={favorites.includes(property.id)}
-                    toggleFavorite={toggleFavorite}
-                    openPropertyDetailsModal={() => openPropertyDetailsModal(property)}
-                    index={index}
-                    />
-                </div>
-              ))}
-            </motion.div>
+            <div className="bg-card/80 backdrop-blur-lg rounded-xl shadow-xl border border-border/30 p-4 sm:p-6">
+              <motion.div
+                className={`grid grid-cols-1 ${isHomePage ? "md:grid-cols-2 lg:grid-cols-3" : "gap-y-6 sm:gap-y-8"} gap-4 sm:gap-6 md:gap-8`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, staggerChildren: 0.1 }}
+              >
+                {properties.map((property, index) => (
+                   <div key={property.id || `prop-${index}`} className={isHomePage ? "" : "w-full md:w-3/4 lg:w-2/3 mx-auto"}>
+                      <PropertyCard
+                      property={property}
+                      isFavorite={favorites.includes(property.id)}
+                      toggleFavorite={toggleFavorite}
+                      openPropertyDetailsModal={() => openPropertyDetailsModal(property)}
+                      index={index}
+                      />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
           ) : (
             <motion.div
               initial={{ opacity: 0 }}

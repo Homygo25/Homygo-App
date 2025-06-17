@@ -56,15 +56,13 @@ const LoginPage = () => {
       toast({ title: "Login Failed", description: "Email and password are required.", variant: "destructive" });
       return;
     }
-    
-    const loginResult = await login(email, password);
 
-    if (loginResult.success && loginResult.user) {
-      // AuthContext now handles setting needsPinSetup and isPinAccessRequired
-      // The useEffect above will handle redirection or showing PIN modal
-      if (!loginResult.error) { // ensure no error like "email not confirmed"
-         toast({ title: "Login Successful!", description: `Welcome back!`});
-      }
+    const loginResult = await login(email.trim(), password);
+
+    if (loginResult.success && loginResult.user && !loginResult.error) {
+      toast({ title: "Login Successful!", description: `Welcome back!`});
+      const redirectPath = location.state?.from?.pathname || '/';
+      navigate(redirectPath, { replace: true });
     }
   };
 
@@ -164,7 +162,7 @@ const LoginPage = () => {
             />
           </div>
           
-          <div className="flex items-center justify-between text-xs sm:text-sm">
+          <div className="flex flex-wrap items-center justify-between gap-1 text-xs sm:text-sm">
              <Button
               type="button"
               variant="link"

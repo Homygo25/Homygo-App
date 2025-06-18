@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -20,11 +21,15 @@ import { Label } from '@/components/ui/label';
 const propertyTypes = ['All Types', 'apartment', 'house', 'condo', 'hotel', 'inn'];
 
 const ExplorePage = () => {
+  const navigate = useNavigate();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('homes');
   
   const [allProperties, setAllProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
+
+  const [favorites, setFavorites] = useState([]);
   
   const [popularProperties, setPopularProperties] = useState([]);
   const [availablePropertiesWeekend, setAvailablePropertiesWeekend] = useState([]);
@@ -94,7 +99,10 @@ const ExplorePage = () => {
 
   useEffect(() => {
     fetchAllPropertiesInitially();
-    
+
+    const storedFavorites = JSON.parse(localStorage.getItem('homygo-favorites') || '[]');
+    setFavorites(storedFavorites);
+
     const loadSectionData = async () => {
       const popular = await fetchSectionProperties(4, { featured: true });
       setPopularProperties(popular);
@@ -173,6 +181,21 @@ const ExplorePage = () => {
     setFilteredProperties(allProperties); // Reset to all properties
     toast({ title: 'Filters Reset', description: 'Showing all available properties.', variant: 'default' });
   };
+
+  const toggleFavorite = (propertyId) => {
+    setFavorites(prev => {
+      const newFavorites = prev.includes(propertyId)
+        ? prev.filter(id => id !== propertyId)
+        : [...prev, propertyId];
+      localStorage.setItem('homygo-favorites', JSON.stringify(newFavorites));
+      toast({ title: newFavorites.includes(propertyId) ? 'Added to favorites!' : 'Removed from favorites' });
+      return newFavorites;
+    });
+  };
+
+  const openPropertyDetailsModal = (property) => {
+    navigate(`/user/listings/${property.id}`, { state: { property } });
+  };
   
   const handleCategoryClick = (category) => {
     setActiveCategory(category);
@@ -200,7 +223,14 @@ const ExplorePage = () => {
       ) : propertiesToRender.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0">
           {propertiesToRender.map((property, idx) => (
-            <PropertyCard key={property.id || `prop-${idx}`} property={property} index={idx} openPropertyDetailsModal={() => {/*TODO: Implement*/}} toggleFavorite={() => {/*TODO: Implement*/}} />
+            <PropertyCard
+              key={property.id || `prop-${idx}`}
+              property={property}
+              index={idx}
+              isFavorite={favorites.includes(property.id)}
+              openPropertyDetailsModal={() => openPropertyDetailsModal(property)}
+              toggleFavorite={() => toggleFavorite(property.id)}
+            />
           ))}
         </div>
       ) : (
@@ -218,7 +248,14 @@ const ExplorePage = () => {
         ) : filteredProperties.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0">
             {filteredProperties.map((property, idx) => (
-                <PropertyCard key={property.id || `filt-prop-${idx}`} property={property} index={idx} openPropertyDetailsModal={() => {/*TODO: Implement*/}} toggleFavorite={() => {/*TODO: Implement*/}}/>
+                <PropertyCard
+                  key={property.id || `filt-prop-${idx}`}
+                  property={property}
+                  index={idx}
+                  isFavorite={favorites.includes(property.id)}
+                  openPropertyDetailsModal={() => openPropertyDetailsModal(property)}
+                  toggleFavorite={() => toggleFavorite(property.id)}
+                />
             ))}
             </div>
         ) : (

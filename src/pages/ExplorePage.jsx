@@ -305,9 +305,20 @@ const ExplorePage = () => {
                 <Label htmlFor="filter-min-price" className="text-xs font-medium text-muted-foreground">Min Price</Label>
                 <Input id="filter-min-price" type="number" placeholder="Any" value={filterPriceRange.min} onChange={(e) => setFilterPriceRange(p => ({...p, min: e.target.value}))} className="bg-input border-border focus:ring-primary text-foreground min-h-[40px] text-sm"/>
               </div>
-              <div>
-                <Label htmlFor="filter-max-price" className="text-xs font-medium text-muted-foreground">Max Price</Label>
-                <Input id="filter-max-price" type="number" placeholder="Any" value={filterPriceRange.max} onChange={(e) => setFilterPriceRange(p => ({...p, max: e.target.value}))} className="bg-input border-border focus:ring-primary text-foreground min-h-[40px] text-sm"/>
+              <div className="flex flex-col items-center">
+                <Label htmlFor="filter-max-price" className="text-xs font-medium text-muted-foreground mb-1">Max Price</Label>
+                <input
+                  id="filter-max-price"
+                  type="range"
+                  min="0"
+                  max="50000"
+                  value={filterPriceRange.max || 50000}
+                  onChange={(e) => setFilterPriceRange(p => ({ ...p, max: e.target.value }))}
+                  className="w-full h-2 accent-primary rounded-lg overflow-hidden"
+                />
+                <span className="mt-1 text-sm font-medium text-primary" id="maxPriceValue">
+                  {`P${Number(filterPriceRange.max || 50000).toLocaleString()}`}
+                </span>
               </div>
             </div>
           </div>

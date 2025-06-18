@@ -1,0 +1,287 @@
+/* Basic Reset & Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f7f6; /* Light grey background */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styling (Mobile First) */
+header {
+    background-color: #2c3e50; /* Dark blue/grey */
+    color: #ecf0f1; /* Light grey text */
+    padding: 1rem 0.5rem; /* Slightly less padding for mobile */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2rem; /* Smaller font for mobile */
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+header p {
+    font-size: 0.9rem; /* Smaller font for mobile */
+    opacity: 0.9;
+}
+
+/* Main Content Area (Mobile First) */
+main {
+    flex-grow: 1;
+    padding: 1rem; /* Less padding for mobile */
+    margin: 1rem auto; /* Less margin for mobile */
+    width: 95%; /* Wider on small screens */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Filter Section (Mobile First) */
+.filters {
+    padding: 1rem; /* Less padding for mobile */
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1.5rem;
+    background-color: #fdfdfd;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.filters h2 {
+    font-size: 1.5rem; /* Smaller heading for mobile */
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically on mobile */
+    align-items: center;
+    gap: 0.8rem; /* Smaller gap */
+    margin-bottom: 0.5rem;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: #555;
+    font-size: 1rem; /* Slightly smaller font */
+}
+
+.filter-group input[type="range"] {
+    width: 90%; /* Wider range input for mobile touch */
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: opacity .2s;
+}
+
+.filter-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px; /* Larger thumb for easier touch */
+    height: 24px;
+    border-radius: 50%;
+    background: #3498db;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.filter-group input[type="range"]::-moz-range-thumb {
+    width: 24px; /* Larger thumb for easier touch */
+    height: 24px;
+    border-radius: 50%;
+    background: #3498db;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.filter-group #maxPriceValue {
+    font-weight: 600;
+    color: #3498db;
+    font-size: 1.1rem; /* Slightly smaller font */
+    min-width: 90px;
+    text-align: center; /* Center align on mobile */
+}
+
+/* Listing Container (Mobile First - Single Column) */
+.listing-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Always a single column on mobile */
+    gap: 1.5rem; /* Smaller gap between listings */
+}
+
+.listing-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.listing-card:hover {
+    transform: none; /* Disable hover transform on touch devices */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Keep original shadow */
+}
+
+.listing-card img {
+    width: 100%;
+    height: 180px; /* Slightly smaller image height for mobile */
+    object-fit: cover;
+    display: block;
+    background-color: #f0f0f0;
+}
+
+.listing-details {
+    padding: 1rem; /* Less padding */
+}
+
+.listing-details h3 {
+    font-size: 1.4rem; /* Smaller heading */
+    margin-bottom: 0.3rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.listing-details p {
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-size: 0.9rem; /* Smaller text */
+}
+
+.listing-price {
+    font-size: 1.4rem; /* Slightly smaller price font */
+    font-weight: 700;
+    color: #27ae60;
+    margin-top: 0.8rem;
+}
+
+.no-listings-message {
+    text-align: center;
+    grid-column: 1 / -1;
+    font-size: 1.1rem; /* Smaller font */
+    color: #777;
+    padding: 2rem 0;
+}
+
+/* Footer Styling (Mobile First) */
+footer {
+    background-color: #34495e;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 0.8rem 0.5rem; /* Less padding */
+    margin-top: 2rem; /* Less margin */
+    font-size: 0.8rem; /* Smaller font */
+}
+
+
+/* Desktop / Tablet Styles (min-width queries for scaling UP) */
+@media (min-width: 768px) {
+    header {
+        padding: 1.5rem 0; /* Restore padding for larger screens */
+    }
+
+    header h1 {
+        font-size: 2.8rem; /* Restore larger font */
+    }
+
+    header p {
+        font-size: 1.1rem; /* Restore larger font */
+    }
+
+    main {
+        padding: 2rem; /* Restore padding */
+        margin: 2rem auto; /* Restore margin */
+        max-width: 1200px; /* Max width for desktop */
+    }
+
+    .filters {
+        padding: 1.5rem; /* Restore padding */
+        margin-bottom: 2rem;
+    }
+
+    .filters h2 {
+        font-size: 1.8rem; /* Restore heading font size */
+    }
+
+    .filter-group {
+        flex-direction: row; /* Layout horizontally on larger screens */
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .filter-group input[type="range"] {
+        width: 60%; /* Adjust width for desktop */
+    }
+
+    .filter-group input[type="range"]::-webkit-slider-thumb {
+        width: 20px; /* Restore smaller thumb */
+        height: 20px;
+    }
+
+    .filter-group input[type="range"]::-moz-range-thumb {
+        width: 20px; /* Restore smaller thumb */
+        height: 20px;
+    }
+
+    .filter-group #maxPriceValue {
+        font-size: 1.2rem; /* Restore font size */
+        text-align: right;
+    }
+
+    .listing-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Multi-column layout */
+        gap: 2rem;
+    }
+
+    .listing-card:hover {
+        transform: translateY(-5px); /* Re-enable hover transform */
+        box-shadow: 0 6px 16px rgba(0,0,0,0.1); /* Restore larger shadow */
+    }
+
+    .listing-card img {
+        height: 200px; /* Restore image height */
+    }
+
+    .listing-details {
+        padding: 1.5rem; /* Restore padding */
+    }
+
+    .listing-details h3 {
+        font-size: 1.6rem; /* Restore heading font size */
+    }
+
+    .listing-details p {
+        font-size: 0.95rem; /* Restore text font size */
+    }
+
+    .listing-price {
+        font-size: 1.5rem; /* Restore price font size */
+    }
+
+    .no-listings-message {
+        font-size: 1.2rem; /* Restore font size */
+        padding: 3rem 0;
+    }
+
+    footer {
+        padding: 1rem 0;
+        margin-top: 3rem;
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Beige + Green Mint + Charcoal Theme */
+  /* Light Mode */
+  --background: 48 33% 95%; /* Beige #f5f2ec */
+  --foreground: 204 10% 23%; /* Charcoal #363c41 */
+  
+  --card: 0 0% 100%;
+  --card-foreground: 204 10% 23%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 204 10% 23%;
+  
+  --primary: 158 44% 52%; /* Green Mint #54b28c */
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 158 30% 90%;
+  --secondary-foreground: 158 44% 32%;
+  
+  --muted: 48 20% 90%;
+  --muted-foreground: 204 10% 43%;
+  
+  --accent: 158 44% 52%; /* Using Mint as accent */
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --border: 48 20% 85%;
+  --input: 0 0% 100%;
+  --ring: 158 44% 52%;
+  
+  --radius: 0.5rem;
+
+  --header-height: 73px;
+  --footer-height: 350px; /* Approximate height */
+}
+
+.dark {
+  --background: 204 10% 15%; /* Dark Charcoal */
+  --foreground: 48 33% 95%; /* Beige */
+  
+  --card: 204 10% 20%;
+  --card-foreground: 48 33% 95%;
+  
+  --popover: 204 10% 15%;
+  --popover-foreground: 48 33% 95%;
+  
+  --primary: 158 44% 52%; /* Green Mint */
+  --primary-foreground: 204 10% 10%;
+  
+  --secondary: 204 10% 25%;
+  --secondary-foreground: 48 33% 85%;
+  
+  --muted: 204 10% 25%;
+  --muted-foreground: 48 20% 70%;
+  
+  --accent: 158 44% 62%;
+  --accent-foreground: 204 10% 10%;
+  
+  --destructive: 0 70% 55%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --border: 204 10% 30%;
+  --input: 204 10% 22%;
+  --ring: 158 44% 52%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.glass-effect {
+    @apply bg-background/80 backdrop-blur-lg;
+}
+
+@layer utilities {
+    .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+    .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    }
+}
